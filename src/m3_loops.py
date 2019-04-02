@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and George Bulger.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -46,7 +46,7 @@ def main():
 def run_test_practice_problem3():
     """ Tests the   practice_problem3  function. """
     ###########################################################################
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  practice_problem3  function defined below.
     #   Include at least ** 2 ** ADDITIONAL tests beyond those we wrote.
     #
@@ -124,6 +124,17 @@ def run_test_practice_problem3():
     # Run the 14 tests in the   tests   list constructed above.
     # -------------------------------------------------------------------------
     st.SimpleTestCase.run_tests('practice_problem3', tests)
+    # Test 15
+    actual = practice_problem3(1, 3, 0.8)
+    expected = [1, 7, 8]
+    print('expected', expected)
+    print('actual', actual)
+
+    # Test 16
+    actual = practice_problem3(7, 9, 0.1)
+    expected = [7, 8, 12, 13, 14, 19, 20, 21, 25]
+    print('expected', expected)
+    print('actual', actual)
 
     ###########################################################################
     # TO DO 2 continued:  More tests:
@@ -138,6 +149,17 @@ def run_test_practice_problem3():
 
 
 def practice_problem3(start, n, threshold):
+    count = 0
+    l = []
+    i = start
+    while True:
+        if count == n:
+            break
+        if (math.sin(i) + math.cos(i)) > threshold:
+            l = l + [i]
+            count = count + 1
+        i = i + 1
+    return l
     """
     What comes in:
       -- An integer:  start
@@ -209,7 +231,7 @@ def practice_problem3(start, n, threshold):
       :type threshold: float
     """
     ###########################################################################
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Some tests are already written for you (above),
     #          but you are required to write ADDITIONAL tests (above).
     ###########################################################################
