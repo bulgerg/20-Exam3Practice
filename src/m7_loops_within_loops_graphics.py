@@ -6,9 +6,9 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
-
+         and George Bulger.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
+import math
 ###############################################################################
 # Students:
 #
@@ -34,7 +34,7 @@ import rosegraphics as rg
 
 def main():
     """ Calls the   TEST   functions in this module. """
-    run_test_hourglass()
+    #run_test_hourglass()
     run_test_many_hourglasses()
 
 
@@ -64,7 +64,38 @@ def run_test_hourglass():
     window2.close_on_mouse_click()
 
 
+
 def hourglass(window, n, point, radius, color):
+    p = point
+    r = radius
+    dx = 2*r*math.cos(math.pi/3)
+    dy = 2*r*math.sin(math.pi/3)
+    for i in range(n):
+        for j in range(i + 1):
+            c = rg.Point(p.x, p.y)
+            c.x = p.x - dx*i + 2*r*j
+            c.y = p.y -dy*i
+            p1 = rg.Point(c.x - r, c.y)
+            p2 = rg.Point(c.x + r, c.y)
+            circle = rg.Circle(c, r)
+            circle.fill_color = color
+            circle.attach_to(window)
+            line = rg.Line(p1, p2)
+            line.attach_to(window)
+    for i in range(n):
+        for j in range(i + 1):
+            c = rg.Point(p.x, p.y)
+            c.x = p.x - dx*i + 2*r*j
+            c.y = p.y + dy*i
+            p1 = rg.Point(c.x - r, c.y)
+            p2 = rg.Point(c.x + r, c.y)
+            circle = rg.Circle(c, r)
+            circle.fill_color = color
+            circle.attach_to(window)
+            line = rg.Line(p1, p2)
+            line.attach_to(window)
+    window.render()
+
     """
     See   hourglass_picture.pdf   in this project for pictures that may
     help you better understand the following specification:
@@ -90,7 +121,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # -------------------------------------------------------------------------
     ###########################################################################
@@ -138,6 +169,13 @@ def run_test_many_hourglasses():
 
 
 def many_hourglasses(window, square, m, colors):
+    r = square.length_of_each_side*0.5
+    p = square.center
+    for i in range(m):
+        point = rg.Point(p.x*(1 + 2*i)*r + r, p.y)
+        hourglass(window, i, point, r, 'blue')
+        window.render()
+    window.render()
     """
     See   many_hourglasses_picture.pdf   in this project for pictures that may
     help you better understand the following specification:
