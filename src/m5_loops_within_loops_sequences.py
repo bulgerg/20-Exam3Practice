@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and George Bulger.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -39,7 +39,7 @@ def main():
 def run_test_integers():
     """ Tests the    integers    function. """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  integers  function defined below.
     #   Include at least ** 1 ** ADDITIONAL test beyond those we wrote.
     #
@@ -72,8 +72,28 @@ def run_test_integers():
     print('Expected is:', expected)
     print('Actual is:  ', answer)
 
+    # Test 2:
+    expected = [1, 2, 3, 4, 5, ]
+    answer = integers([(1, 1.1, 2.2),
+                       (2, 'hi', 3),
+                       [1.5, 2.5, 36.7, 4],
+                       'hello',
+                       [],
+                       ['oops'],
+                       [[55], [44]],
+                       [30.6, 5]
+                       ])
+    print('Expected is:', expected)
+    print('Actual is:  ', answer)
+
 
 def integers(sequence_of_sequences):
+    l = []
+    for i in range(len(sequence_of_sequences)):
+        for j in range(len(sequence_of_sequences[i])):
+            if type(sequence_of_sequences[i][j]) is int:
+                l = l + [sequence_of_sequences[i][j]]
+    return l
     """
     Returns a new list that contains all the integers
     in the subsequences of the given sequence, in the order that they
@@ -96,7 +116,7 @@ def integers(sequence_of_sequences):
       :rtype: list of int
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # -------------------------------------------------------------------------
     ###########################################################################
@@ -124,7 +144,7 @@ def integers(sequence_of_sequences):
 def run_test_big_letters():
     """ Tests the    big_letters    function. """
     # -------------------------------------------------------------------------
-    # TODO: 4. Implement this TEST function.
+    # DONE: 4. Implement this TEST function.
     #   It TESTS the  big_letters  function defined below.
     #   Include at least ** 1 ** ADDITIONAL test beyond those we wrote.
     # -------------------------------------------------------------------------
@@ -160,8 +180,21 @@ def run_test_big_letters():
     print('Expected is:', expected)
     print('Actual is:  ', answer)
 
+    # Test 2:
+    expected = 'HELLOTHERE'
+    answer = big_letters(['Hen', ['Hen'], 'Egg', 'Lake', 'Lake', ['OK'], 'Ok', 'Time', [1, 2, 3], 'High', 'Elephant', 'Rec', 'Easter', [1, 3, 4, 5]])
+    print('Expected is:', expected)
+    print('Actual is:  ', answer)
+
 
 def big_letters(sequence_of_sequences):
+    l = ''
+    for i in range(len(sequence_of_sequences)):
+        if type(sequence_of_sequences[i]) is str:
+            for j in range(len(sequence_of_sequences[i])):
+                if sequence_of_sequences[i][j].isupper() is True:
+                    l = l + sequence_of_sequences[i][j]
+    return l
     """
     Returns a new STRING that contains all the upper-case letters
     in the subsequences of the given sequence that are strings,
@@ -190,7 +223,7 @@ def big_letters(sequence_of_sequences):
     Precondition:  the given argument is a sequence of sequences.
     """
     # -------------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # -------------------------------------------------------------------------
     ###########################################################################
